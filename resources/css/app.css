@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+@import "../../vendor/livewire/flux/dist/flux.css";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --default-font-size: 14px;
+    --default-font-family: "Montserrat";
+
+    /** Layouts */
+    --breakpoint-phone: 375px;
+    --breakpoint-tablet: 431px;
+    --breakpoint-landscape: 768px;
+    --breakpoint-laptop: 1024px;
+    --breakpoint-desktop: 1536px;
+
+    --placeholder-zinc-500: var(--color-red-500);
+}
+
+@layer base {
+    :root {
+        font-size: var(--default-font-size);
+        font-family: var(--default-font-family);
+    }
+    body {
+        /* size: var(--default-font-size); */
+        @apply h-full overflow-hidden bg-gray-100 dark:bg-gray-900;
+        /* @apply h-full overflow-hidden bg-zinc-100 dark:bg-zinc-950 dark:bg-radial-[at_50%_45%] dark:from-zinc-800/80; */
+    }
+}
+
+/* Re-assign Flux's gray of choice... */
+@theme {
+    --color-gray-50: var(--color-zinc-50);
+    --color-gray-100: var(--color-zinc-100);
+    --color-gray-200: var(--color-zinc-200);
+    --color-gray-300: var(--color-zinc-300);
+    --color-gray-400: var(--color-zinc-400);
+    --color-gray-500: var(--color-zinc-500);
+    --color-gray-600: var(--color-zinc-600);
+    --color-gray-700: var(--color-zinc-700);
+    --color-gray-800: var(--color-zinc-800);
+    --color-gray-900: var(--color-zinc-900);
+    --color-gray-950: var(--color-zinc-950);
+}
+@theme {
+    --color-accent: var(--color-zinc-800);
+    --color-accent-content: var(--color-zinc-800);
+    --color-accent-foreground: var(--color-white);
+}
+@layer theme {
+    .dark {
+        --color-accent: var(--color-white);
+        --color-accent-content: var(--color-white);
+        --color-accent-foreground: var(--color-zinc-800);
+    }
+}
