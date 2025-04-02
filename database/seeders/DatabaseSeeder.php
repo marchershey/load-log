@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Lane;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,11 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
 
+        // Create my account
         User::factory()->create([
             'username' => 'marchershey',
             'password' => Hash::make('password'),
         ]);
+
+        // Create random user accounts
+        User::factory(10)->create();
+
+        // Create random lanes
+        Lane::factory(10)->create();
     }
 }

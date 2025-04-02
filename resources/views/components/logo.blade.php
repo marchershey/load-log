@@ -1,4 +1,4 @@
-@props([
+{{-- @props([
     'size' => 'md',
     'iconSize',
     'iconPadding',
@@ -23,11 +23,27 @@
             $textSize ??= 'text-2xl!';
             break;
     }
-@endphp
+@endphp --}}
 
-<div {{ $attributes->merge(['class' => 'flex items-center space-x-2']) }}>
+{{-- <flux:brand name="Acme Inc." href="#">
+    <x-slot name="logo">
+        <div class="bg-accent text-accent-foreground flex size-6 shrink-0 items-center justify-center rounded">
+            <i class="font-serif font-bold">A</i>
+        </div>
+    </x-slot>
+</flux:brand> --}}
+
+<flux:brand name="{{ config('app.name') }}" href="#">
+    <x-slot name="logo">
+        <div class="bg-accent text-accent-foreground flex size-6 shrink-0 items-center justify-center rounded">
+            <flux:icon.truck variant="micro" />
+        </div>
+    </x-slot>
+</flux:brand>
+
+{{-- <div {{ $attributes->merge(['class' => 'flex items-center space-x-2']) }}>
     <div class="bg-accent {{ $iconPadding }} flex items-center justify-center rounded-full">
         <flux:icon.truck class="{{ $iconSize }} text-white dark:text-black" />
     </div>
     <flux:heading class="font-bold! {{ $textSize }} min-w-0 truncate leading-5">{{ config('app.name') }}</flux:heading>
-</div>
+</div> --}}

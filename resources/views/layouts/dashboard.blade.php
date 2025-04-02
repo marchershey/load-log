@@ -1,7 +1,7 @@
 @props(['title', 'nav' => []])
 
-<div class="flex h-full w-full">
-    <flux:sidebar class="dark flex h-full shrink-0 bg-white duration-200 dark:bg-gray-800" sticky stashable>
+<div class="flex h-full w-full bg-white dark:bg-gray-900">
+    <flux:sidebar class="flex h-full shrink-0 bg-white duration-200 dark:bg-gray-900" stashable>
 
         <div class="flex justify-between">
             <x-logo />
@@ -23,7 +23,7 @@
     {{-- content --}}
     <div class="relative flex flex-1 flex-col overflow-y-auto">
         {{-- header --}}
-        <flux:header class="sticky top-0 w-full border-b border-zinc-200 bg-white dark:border-0 dark:border-white/10 dark:bg-gray-800">
+        <flux:header class="sticky top-0 w-full bg-white dark:bg-gray-900">
             <div class="flex w-full">
                 <div class="flex w-full space-x-2">
                     <flux:sidebar.toggle class="laptop:hidden mr-4" icon="menu" inset="left" />
@@ -44,7 +44,7 @@
             </div>
         </flux:header>
 
-        <flux:main class="">
+        <flux:main class="min-laptop:rounded-tl-2xl min-laptop:border-l border-t border-gray-200 bg-gray-100 dark:border-gray-400/10 dark:bg-gray-800">
             <div class="flex flex-col space-y-10">
                 {{ $slot }}
             </div>

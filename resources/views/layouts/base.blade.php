@@ -43,7 +43,7 @@
     @endenv
 
     @persist('toast')
-        <flux:toast position="top right" />
+        <flux:toast position="bottom right" />
     @endpersist
 
     <!-- Livewire Script Config -->

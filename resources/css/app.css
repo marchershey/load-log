@@ -30,8 +30,14 @@
     }
     body {
         /* size: var(--default-font-size); */
-        @apply h-full overflow-hidden bg-gray-100 dark:bg-gray-900;
+        @apply h-full overflow-hidden bg-gray-100 dark:bg-gray-800;
         /* @apply h-full overflow-hidden bg-zinc-100 dark:bg-zinc-950 dark:bg-radial-[at_50%_45%] dark:from-zinc-800/80; */
+    }
+
+    input::placeholder,
+    [data-flux-select-placeholder],
+    [data-flux-date-picker-placeholder] {
+        @apply text-gray-300!;
     }
 }
 

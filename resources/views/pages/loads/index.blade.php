@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between">
         <flux:heading size="xl">Loads</flux:heading>
         <flux:modal.trigger name="start-load-modal">
-            <flux:button size="sm" icon="plus" wire:click="updateDate()">Add load</flux:button>
+            <flux:button size="sm" icon="plus" wire:click="openNewLoadModal()">Add load</flux:button>
         </flux:modal.trigger>
     </div>
 
@@ -35,7 +35,7 @@
         </flux:table>
     </div>
 
-    <flux:modal name="start-load-modal" variant="flyout" position="left" x-trap="true">
+    <flux:modal class="max-tablet:[:where(&)]:min-w-full" name="new-load-modal" variant="flyout" position="left" x-trap="true">
         <div class="space-y-6">
             <div>
                 <flux:heading size="lg">Add New Load</flux:heading>
@@ -43,7 +43,7 @@
             </div>
 
             <flux:input type="tel" label="Load Number" mask="0999999" placeholder="Enter load number" />
-            <flux:input type="tel" label="Bill of Lading" wire:focus mask="999999" placeholder="Enter BOL number" />
+            <flux:input type="tel" label="Bill of Lading" mask="999999" placeholder="Enter BOL number" />
             <flux:input type="tel" label="Trailer Number" mask="999999" placeholder="Enter trailer number" />
 
             <flux:field>
@@ -51,10 +51,18 @@
                     <flux:label>Lane</flux:label>
                     <flux:link class="text-sm" href="#" variant="subtle">Add lane</flux:link>
                 </div>
-                <flux:select variant="combobox" placeholder="Choose lane..." :filter="false">
-                    <flux:select.option>Grupo (Louisville, KY)</flux:select.option>
+                <flux:select badge="test" variant="listbox" searchable placeholder="Choose lane...">
+                    @if (isset($lanes))
+                        @foreach ($lanes as $lane)
+                            <flux:select.option value="{{ $lane->id }}">
+                                <div class="flex flex-col">
+                                    <span>{{ $lane->name }}</span>
+                                    <span class="text-xs text-gray-400 [ui-selected_&]:hidden">{{ $lane->city }}, {{ $lane->state }}</span>
+                                </div>
+                            </flux:select.option>
+                        @endforeach
+                    @endif
                 </flux:select>
-                <flux:error name="password" />
             </flux:field>
             <flux:date-picker label="Date" with-today wire:model.change="date" />
 
