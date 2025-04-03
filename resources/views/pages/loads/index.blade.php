@@ -2,9 +2,7 @@
 
     <div class="flex items-center justify-between">
         <flux:heading size="xl">Loads</flux:heading>
-        <flux:modal.trigger name="start-load-modal">
-            <flux:button size="sm" icon="plus" wire:click="openNewLoadModal()">Add load</flux:button>
-        </flux:modal.trigger>
+        <flux:button size="sm" icon="plus" wire:click="initNewLoad()">Add load</flux:button>
     </div>
 
     <div class="-mx-6">
@@ -43,20 +41,35 @@
             </div>
 
             <flux:input type="tel" label="Load Number" mask="0999999" placeholder="Enter load number" />
-            <flux:input type="tel" label="Bill of Lading" mask="999999" placeholder="Enter BOL number" />
-            <flux:input type="tel" label="Trailer Number" mask="999999" placeholder="Enter trailer number" />
+            <flux:input type="number" label="Bill of Lading" placeholder="Enter BOL number" />
 
+            {{-- Trailers --}}
+            <flux:select label="Trailer Number" variant="combobox" wire:model="trailer" placeholder="Enter Trailer Number">
+                <x-slot name="input">
+                    <flux:select.input type="tel" mask="999999" wire:model.blur="trailer" x-model="search" />
+                </x-slot>
+
+                @if (isset($trailers))
+                    @foreach ($trailers as $trailer)
+                        <flux:select.option value="{{ $trailer->id }}" clearable>
+                            {{ $trailer->number }}&nbsp;<span class="text-gray-400">({{ $trailer->lane->name }})</span>
+                        </flux:select.option>
+                    @endforeach
+                @endif
+            </flux:select>
+
+            {{-- Lanes --}}
             <flux:field>
                 <div class="mb-3 flex justify-between">
                     <flux:label>Lane</flux:label>
                     <flux:link class="text-sm" href="#" variant="subtle">Add lane</flux:link>
                 </div>
-                <flux:select badge="test" variant="listbox" searchable placeholder="Choose lane...">
+                <flux:select variant="listbox" searchable wire:model.change="lane" placeholder="Choose a lane...">
                     @if (isset($lanes))
                         @foreach ($lanes as $lane)
-                            <flux:select.option value="{{ $lane->id }}">
+                            <flux:select.option value="{{ $lane->id }}" clearable>
                                 <div class="flex flex-col">
-                                    <span>{{ $lane->name }}</span>
+                                    <span class="text-base">{{ $lane->name }}</span>
                                     <span class="text-xs text-gray-400 [ui-selected_&]:hidden">{{ $lane->city }}, {{ $lane->state }}</span>
                                 </div>
                             </flux:select.option>
@@ -64,12 +77,11 @@
                     @endif
                 </flux:select>
             </flux:field>
+
             <flux:date-picker label="Date" with-today wire:model.change="date" />
 
             <div class="flex">
-                <flux:spacer />
-
-                <flux:button type="submit" variant="primary">Save load</flux:button>
+                <flux:button class="w-full" type="submit" variant="primary">Save load</flux:button>
             </div>
         </div>
     </flux:modal>

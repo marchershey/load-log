@@ -11,11 +11,11 @@
         <flux:input as="button" variant="filled" placeholder="Search..." icon="magnifying-glass" />
 
         <flux:navlist variant="outline">
-            <flux:navlist.item href="{{ route('dashboard.index') }}" wire:navigate icon="house">Dashboard</flux:navlist.item>
-            <flux:navlist.item href="{{ route('loads') }}" wire:navigate icon="truck">Loads</flux:navlist.item>
-            <flux:navlist.group heading="Information" expandable :expanded="false">
-                <flux:navlist.item href="#" icon="route">Lanes</flux:navlist.item>
-                <flux:navlist.item href="#" icon="caravan">Trailers</flux:navlist.item>
+            <flux:navlist.item href="{{ route('dashboard.index') }}" wire:navigate.hover icon="house">Dashboard</flux:navlist.item>
+            <flux:navlist.item href="{{ route('loads') }}" wire:navigate.hover icon="truck">Loads</flux:navlist.item>
+            <flux:navlist.group class="mt-4" heading="More" expandable :expanded="false">
+                <flux:navlist.item href="#" wire:navigate.hover icon="route">Lanes</flux:navlist.item>
+                <flux:navlist.item href="#" wire:navigate.hover icon="caravan">Trailers</flux:navlist.item>
             </flux:navlist.group>
         </flux:navlist>
 

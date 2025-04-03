@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Lane;
+use App\Models\Trailer;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -24,7 +25,10 @@ class DatabaseSeeder extends Seeder
         // Create random user accounts
         User::factory(10)->create();
 
-        // Create random lanes
+        // Create random lanes (must be after users)
         Lane::factory(10)->create();
+
+        // Create random trailers (must be after users and lanes)
+        Trailer::factory(10)->create();
     }
 }
