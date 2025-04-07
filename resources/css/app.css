@@ -10,6 +10,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+    --color-primary: var(--color-orange-500);
+
     --default-font-size: 14px;
     --default-font-family: "Montserrat";
 
@@ -27,6 +29,7 @@
     :root {
         font-size: var(--default-font-size);
         font-family: var(--default-font-family);
+        @apply transition-colors;
     }
     body {
         /* size: var(--default-font-size); */
@@ -37,8 +40,12 @@
     input::placeholder,
     [data-flux-select-placeholder],
     [data-flux-date-picker-placeholder] {
-        @apply text-gray-300!;
+        @apply text-gray-300/50!;
     }
+}
+
+[x-cloak] {
+    display: none !important;
 }
 
 /* Re-assign Flux's gray of choice... */

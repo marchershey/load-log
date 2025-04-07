@@ -14,6 +14,7 @@ return [
     */
 
     'class_namespace' => 'App\\Http',
+    'form_namespace' => 'App\\Forms',
 
     /*
     |---------------------------------------------------------------------------
@@ -147,7 +148,7 @@ return [
 
     'navigate' => [
         'show_progress_bar' => true,
-        'progress_bar_color' => '#2299dd',
+        'progress_bar_color' => '#ffffff',
     ],
 
     /*

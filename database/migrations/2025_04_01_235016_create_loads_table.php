@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('loads', function (Blueprint $table) {
             $table->id();
-            $table->integer('number');
-            $table->integer('bol')->nullable();
-            $table->integer('trailer_id')->nullable();
-            $table->integer('lane_id')->nullable();
-            $table->timestamp('date');
+            $table->string('number');
+            $table->string('bol')->nullable();
+            $table->integer('trailer_id');
+            $table->integer('lane_id');
+            $table->date('date');
             $table->integer('created_by');
             $table->timestamps();
             $table->softDeletes();

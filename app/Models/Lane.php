@@ -15,4 +15,13 @@ class Lane extends Model
         'state',
         'created_by',
     ];
+
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            if (auth()->check()) {
+                $model->created_by = auth()->id();
+            }
+        });
+    }
 }

@@ -19,7 +19,7 @@
     <title>{{ ($title ?? 'NO TITLE SET') . ' - ' . config('app.name') }}</title>
 </head>
 
-<body class="@container flex h-screen overflow-hidden">
+<body class="@container flex h-screen overflow-hidden" x-data x-on:console-log.window="console.log(event.detail.message)">
     <!-- Main Content -->
     <div class="w-full">
         {{ $slot }}

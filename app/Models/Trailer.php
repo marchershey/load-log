@@ -11,10 +11,19 @@ class Trailer extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nuumber',
+        'number',
         'lane_id',
         'created_by',
     ];
+
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            if (auth()->check()) {
+                $model->created_by = auth()->id();
+            }
+        });
+    }
 
     public function lane(): BelongsTo
     {
